@@ -1,0 +1,18 @@
+[
+    {
+        "album": "The Eminem Show",
+        "artistName": "Eminem",
+        "releaseYear": "2002",
+        "genres": "Contemporary, Hip-Hop",
+        "rating": "3",
+        "songTitle": "Business"
+    },
+    {
+        "album": "Relapse",
+        "artistName": "Eminem",
+        "releaseYear": "2009",
+        "genres": "Contemporary, Hip-Hop",
+        "rating": "3",
+        "songTitle": "Deja Vu"
+    }
+]
