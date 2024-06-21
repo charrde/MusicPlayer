@@ -104,6 +104,7 @@ nav {
     border: 3px solid #e1def2;
     border-radius: 50%;
     background-color: #e1def2;
+    padding: 10px;
 }
 
 .play-song-button:hover {
@@ -115,10 +116,6 @@ nav {
 .play-song-button:active {
     transform: scale(0.9);
     transition: transform 0.2s;
-}
-
-.play-song-button svg {
-    padding: 5px;
 }
 
 .play-song-button svg path {
@@ -171,6 +168,10 @@ nav {
     margin: 0;
 }
 
+.seek-time {
+    min-width: 34px;
+}
+
 .seek .seek-slider {
     -webkit-appearance: none;
     appearance: none;
@@ -180,11 +181,31 @@ nav {
     height: 5px;
 }
 
-.seek .seek-slider::-webkit-slider-thumb, .seek-slider::-moz-range-thumb {
-    appearance: none;
+.seek .seek-slider::-moz-range-thumb {
+    border: none;
+    width: 0;
+    height: 0;
+}
+
+.seek .seek-slider:hover::-moz-range-thumb {
     background-color: #e1def2;
-    border-radius: 0;
-    width: 2px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+}
+
+.seek .seek-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 0;
+}
+
+.seek .seek-slider:hover::-webkit-slider-thumb {
+    background-color: #e1def2;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
 }
 
 .play-button {
@@ -197,6 +218,7 @@ nav {
     border: 3px solid #e1def2;
     border-radius: 50%;
     background-color: #e1def2;
+    padding: 15px;
 }
 
 .play-button:hover {
@@ -208,10 +230,6 @@ nav {
 .play-button:active {
     transform: scale(0.9);
     transition: transform 0.2s;
-}
-
-.play-button svg {
-    padding: 10px;
 }
 
 .play-button svg path {
