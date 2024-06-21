@@ -6,6 +6,10 @@ body {
     background-color: #0f0b1e;
 }
 
+main {
+    height: 100vh;
+}
+
 h1, h2, h3, h4, h5, h6, p, li, a {
     color: #e1def2;
 }
@@ -123,7 +127,7 @@ nav {
 
 .media-center {
     display: flex;
-    position: fixed;
+    position: sticky;
     background-color: #1A1629;
     bottom: 0;
     width: 100%;
