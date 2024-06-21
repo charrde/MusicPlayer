@@ -5,35 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
     <header>
         <div class="center-container">
-            <h1>Stereotify</h1>
-            <div class="menu">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-                    <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
-                </svg>
+            <div class="header">
+                <h1>Stereotify</h1>
+                <div class="mobile-menu">
+                    <button class="home-button">
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <svg fill="#000000" version="1.1" viewBox="0 0 58.365 58.365" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m57.863 26.632-8.681-8.061v-13.206h-10v3.921l-10-9.286-28.68 26.632c-0.404 0.376-0.428 1.009-0.052 1.414 0.375 0.404 1.008 0.427 1.414 0.052l3.319-3.082v33.349h48v-33.35l3.319 3.082c0.192 0.179 0.437 0.267 0.681 0.267 0.269 0 0.536-0.107 0.732-0.319 0.376-0.404 0.352-1.037-0.052-1.413zm-16.681-19.267h6v9.349l-6-5.571v-3.778zm-18 49v-21.063c0-0.517 0.42-0.937 0.937-0.937h10.126c0.517 0 0.937 0.42 0.937 0.937v21.063h-12zm28 0h-14v-21.063c0-1.62-1.317-2.937-2.937-2.937h-10.126c-1.62 0-2.937 1.317-2.937 2.937v21.063h-14v-33.207l22-20.429 14.28 13.26 7.72 7.168v33.208z"/>
+                        </svg>
+                        <h2>Home</h2>
+                    </button>
+                    <button class="search-button">
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <svg fill="#000000" version="1.1" viewBox="0 0 53.627 53.627" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M53.627,49.385L37.795,33.553C40.423,30.046,42,25.709,42,21C42,9.42,32.58,0,21,0S0,9.42,0,21s9.42,21,21,21  c4.709,0,9.046-1.577,12.553-4.205l15.832,15.832L53.627,49.385z M2,21C2,10.523,10.523,2,21,2s19,8.523,19,19s-8.523,19-19,19  S2,31.477,2,21z M35.567,36.093c0.178-0.172,0.353-0.347,0.525-0.525c0.146-0.151,0.304-0.29,0.445-0.445l14.262,14.262  l-1.415,1.415L35.123,36.537C35.278,36.396,35.416,36.238,35.567,36.093z"/>
+                        </svg>
+                        <h2>Search</h2>
+                    </button>
+                </div>
+                <nav class="">
+                    <ul>
+                        <li>Home</li>
+                        <li>Search</li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li>Home</li>
-                    <li>Search</li>
-                </ul>
-            </nav>
         </div>
     </header>
     <main>
         <section class="center-container">
             <h2>Music</h2>
-            <h3>Volume</h3>
-            <input type="range" class="volume-slider" value="60" min="0" max="100">
-            <p class="volume-level"></p>
-            <div class="music">
+            <div class="volume">
+                <h3>Volume</h3>
+                <input type="range" class="volume-slider" value="50" min="0" max="100">
+                <p class="volume-level"></p>
             </div>
+            <div class="music"></div>
         </section>
     </main>
+    <div class="media-center hidden">
+        <div class="top-controls">
+            <div class="song-details">
+                <h2 class="song-title"></h2>
+                <h3 class="song-artist"></h3>
+            </div>
+            <button class="play-button">
+                <svg class="play-icon" version="1.1" viewBox="-3 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(-419 -571)" fill="#000">
+                <path d="m440.42 583.55-18.997-12.243c-1.127-0.607-2.418-0.544-2.418 1.635v24.108c0 1.992 1.385 2.306 2.418 1.635l18.997-12.243c0.782-0.799 0.782-2.093 0-2.892"></path>
+                </g>
+                </svg>
+                <svg class="pause-icon" version="1.1" viewBox="-4 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(-472 -571)" fill="#000">
+                    <path d="m490 571h-4c-1.104 0-2 0.896-2 2v24c0 1.104 0.896 2 2 2h4c1.104 0 2-0.896 2-2v-24c0-1.104-0.896-2-2-2zm-12 0h-4c-1.104 0-2 0.896-2 2v24c0 1.104 0.896 2 2 2h4c1.104 0 2-0.896 2-2v-24c0-1.104-0.896-2-2-2z"></path>
+                    </g>
+                </svg>
+            </button>
+        </div>
+        <div class="seek">
+            <p class="current-time"></p>
+            <input type="range" class="seek-slider" value="0" min="0" max="100">
+            <p class="audio-duration"></p>
+        </div>
+    </div>
+    <audio></audio>
 </body>
 </html>
