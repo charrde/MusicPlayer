@@ -9,7 +9,6 @@ const audio = document.querySelector('audio');
 
 async function loadMusic() {
 	try {
-		const musicList = document.getElementById('music-list');
 		const response = await fetchDatabase();
 		const songs = response.songs;
 		console.log("Songs fetched:", songs);

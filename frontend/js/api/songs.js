@@ -1,5 +1,5 @@
 export function fetchDatabase() {
-	const endpoint = "https://shmoovin-music-3ad94c4568ff.herokuapp.com/";
+	const endpoint = "https://shmoovin-music-3ad94c4568ff.herokuapp.com/random-songs";
 	return fetch(endpoint)
 		.then(response => {
 			if (!response.ok) {
