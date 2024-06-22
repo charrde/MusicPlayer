@@ -7,11 +7,17 @@ const app = express();
 const dbPath = path.resolve(__dirname, './data/music.db');
 const db = new sqlite3.Database(dbPath);
 
-app.use(cors());
+
+app.use(cors({
+	origin: '*',
+	methods: ['GET', 'POST', 'PUT', 'DELETE'],
+	allowedHeaders: ['Content-Type']
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
-	res.send('Welcome to the Shmoovin Music Player API');
+	res.send('Welcome to the Music Player API');
 });
 
 app.get('/artists', (req, res) => {
