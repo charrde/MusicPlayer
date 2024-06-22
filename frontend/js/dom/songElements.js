@@ -29,7 +29,8 @@ export function createSongCard(song) {
 		let volumeLevelTag = document.querySelector('.volume-level')
 		let volume = document.querySelector('.volume-slider')
 		audio.src = `${song.filePath}`; 
-		console.log(audio.src)
+		console.log(audio.src);
+		console.log(audio);
 
 		audio.addEventListener('loadedmetadata', function() {
 			createMediaCenter(song);
