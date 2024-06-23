@@ -103,7 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		const result = await response.json();
-		alert(result.message);
+
+		if (response.ok) {
+			alert(result.message);
+		} 
+        else {
+			alert(result.error);
+		}
 	});
 
 	loadArtists();
