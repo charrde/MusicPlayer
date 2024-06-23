@@ -24,21 +24,27 @@ export function createSongCard(song) {
 	const playSong = songCard.querySelector('.play-song-button');
 	const audio = document.querySelector('audio');
 
-	playSong.addEventListener('click', function() {
-
+	playSong.addEventListener('click', async function() {
 		let volumeLevelTag = document.querySelector('.volume-level')
 		let volume = document.querySelector('.volume-slider')
-		audio.src = `${song.file_path}`;
 
-		audio.addEventListener('loadedmetadata', function() {
-			createMediaCenter(song);
-			pauseAllAudio();
-			audio.currentTime = 0;
-			resetAllSliders();
-			audio.play();
-			audio.volume = (volume.value / 100)
-			volumeLevelTag = volume.value;
-		});
+		try {
+			const response = await fetch(`https://shmoovin.adaptable.app/presigned-url/${song.file_path.split('/').pop()}`);
+			const data = await response.json();
+			audio.src = data.url;
+
+			audio.addEventListener('loadedmetadata', function() {
+				createMediaCenter(song);
+				pauseAllAudio();
+				audio.currentTime = 0;
+				resetAllSliders();
+				audio.play();
+				audio.volume = (volume.value / 100)
+				volumeLevelTag = volume.value;
+			});
+		} catch (error) {
+			console.error('Error fetching pre-signed URL:', error);
+		}
 	});
 
 	return songCard;
