@@ -106,44 +106,57 @@ document.addEventListener('DOMContentLoaded', () => {
 		addAlbumModal.style.display = 'none';
 	});
 
-	document.getElementById('song-form').addEventListener('submit', async (e) => {
+	document.getElementById('add-song-form').addEventListener('submit', async (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+
+		try {
+			const response = await fetch('https://shmoovin.adaptable.app/add-song', {
+				method: 'POST',
+				headers: {
+					'Authorization': `Bearer ${token}`
+				},
+				body: formData,
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				alert(result.message);
+			} else {
+				alert(result.error);
+				console.error('Error details:', result.error, result.stack);
+			}
+		} catch (err) {
+			console.error('Fetch error:', err);
+		}
+	});
+
+	document.getElementById('update-song-file-form').addEventListener('submit', async (e) => {
 		e.preventDefault();
 
 		const formData = new FormData(e.target);
 		const existingSongId = existingSongSelect.value;
 
 		try {
-			let response;
-			if (existingSongId) {
-				response = await fetch(`https://shmoovin.adaptable.app/update-song-file/${existingSongId}`, {
-					method: 'POST',
-					headers: {
-						'Authorization': `Bearer ${token}`
-					},
-					body: formData,
-				});
-			} 
-            else {
-				response = await fetch('https://shmoovin.adaptable.app/add-song', {
-					method: 'POST',
-					headers: {
-						'Authorization': `Bearer ${token}`
-					},
-					body: formData,
-				});
-			}
+			const response = await fetch(`https://shmoovin.adaptable.app/update-song-file/${existingSongId}`, {
+				method: 'POST',
+				headers: {
+					'Authorization': `Bearer ${token}`
+				},
+				body: formData,
+			});
 
 			const result = await response.json();
 
 			if (response.ok) {
 				alert(result.message);
-			} 
-            else {
+			} else {
 				alert(result.error);
 				console.error('Error details:', result.error, result.stack);
 			}
-		} 
-        catch (err) {
+		} catch (err) {
 			console.error('Fetch error:', err);
 		}
 	});
