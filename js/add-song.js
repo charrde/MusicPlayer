@@ -3,9 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	const albumSelect = document.getElementById('album_id');
 	const addArtistModal = document.getElementById('add-artist-modal');
 	const addAlbumModal = document.getElementById('add-album-modal');
+	const token = localStorage.getItem('token');
 
 	const loadArtists = async () => {
-		const response = await fetch('http://localhost:3000/artists');
+		const response = await fetch('https://shmoovin.adaptable.app/artists', {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		});
 		const data = await response.json();
 		artistSelect.innerHTML = '';
 		data.artists.forEach(artist => {
@@ -18,7 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const loadAlbums = async () => {
 		const artistId = artistSelect.value;
-		const response = await fetch(`http://localhost:3000/albums?artist_id=${artistId}`);
+		const response = await fetch(`https://shmoovin.adaptable.app/albums/${artistId}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		});
 		const data = await response.json();
 		albumSelect.innerHTML = '<option value="">Single</option>';
 		data.albums.forEach(album => {
@@ -35,11 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		addArtistModal.style.display = 'block';
 	});
 
+	document.getElementById('close-artist-modal').addEventListener('click', () => {
+		addArtistModal.style.display = 'none';
+	});
+
 	document.getElementById('save-artist-button').addEventListener('click', async () => {
 		const name = document.getElementById('new-artist-name').value;
-		const response = await fetch('http://localhost:3000/artists', {
+		const response = await fetch('https://shmoovin.adaptable.app/artists', {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: { 
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+			},
 			body: JSON.stringify({ name })
 		});
 		const data = await response.json();
@@ -51,14 +67,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		addAlbumModal.style.display = 'block';
 	});
 
+	document.getElementById('close-album-modal').addEventListener('click', () => {
+		addAlbumModal.style.display = 'none';
+	});
+
 	document.getElementById('save-album-button').addEventListener('click', async () => {
 		const title = document.getElementById('new-album-title').value;
 		const artist_id = artistSelect.value;
 		const release_year = document.getElementById('new-album-release-year').value;
 		const genres = document.getElementById('new-album-genres').value;
-		const response = await fetch('http://localhost:3000/albums', {
+		const response = await fetch('https://shmoovin.adaptable.app/albums', {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: { 
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+			},
 			body: JSON.stringify({ title, artist_id, release_year, genres })
 		});
 		const data = await response.json();
@@ -71,8 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const formData = new FormData(e.target);
 
-		const response = await fetch('http://localhost:3000/add-song', {
+		const response = await fetch('https://shmoovin.adaptable.app/add-song', {
 			method: 'POST',
+			headers: {
+				'Authorization': `Bearer ${token}`
+			},
 			body: formData,
 		});
 
