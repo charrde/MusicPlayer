@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const artistSelect = document.getElementById('artist_id');
 	const albumSelect = document.getElementById('album_id');
+	const existingSongSelect = document.getElementById('existing-song');
 	const addArtistModal = document.getElementById('add-artist-modal');
 	const addAlbumModal = document.getElementById('add-album-modal');
 	const token = localStorage.getItem('token');
@@ -35,6 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
 			option.value = album.id;
 			option.textContent = album.title;
 			albumSelect.appendChild(option);
+		});
+	};
+
+	const loadExistingSongs = async () => {
+		const response = await fetch('https://shmoovin.adaptable.app/songs', {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+		});
+		const data = await response.json();
+		existingSongSelect.innerHTML = '<option value="">Select a song to update</option>';
+		data.songs.forEach(song => {
+			const option = document.createElement('option');
+			option.value = song.song_id;
+			option.textContent = song.song_title;
+			existingSongSelect.appendChild(option);
 		});
 	};
 
@@ -93,21 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault();
 
 		const formData = new FormData(e.target);
+		const existingSongId = existingSongSelect.value;
 
 		try {
-			const response = await fetch('https://shmoovin.adaptable.app/add-song', {
-				method: 'POST',
-				headers: {
-					'Authorization': `Bearer ${token}`
-				},
-				body: formData,
-			});
+			let response;
+			if (existingSongId) {
+				// Update existing song
+				response = await fetch(`https://shmoovin.adaptable.app/update-song-file/${existingSongId}`, {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`
+					},
+					body: formData,
+				});
+			} 
+            else {
+				// Add new song
+				response = await fetch('https://shmoovin.adaptable.app/add-song', {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`
+					},
+					body: formData,
+				});
+			}
 
 			const result = await response.json();
 
 			if (response.ok) {
 				alert(result.message);
-			} else {
+			} 
+            else {
 				alert(result.error); // Show the error message
 				console.error('Error details:', result.error, result.stack); // Log the error details in the console
 			}
@@ -118,4 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	loadArtists();
+	loadExistingSongs();
 });
