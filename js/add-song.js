@@ -115,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		try {
 			let response;
 			if (existingSongId) {
-				// Update existing song
 				response = await fetch(`https://shmoovin.adaptable.app/update-song-file/${existingSongId}`, {
 					method: 'POST',
 					headers: {
@@ -125,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 			} 
             else {
-				// Add new song
 				response = await fetch('https://shmoovin.adaptable.app/add-song', {
 					method: 'POST',
 					headers: {
@@ -141,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				alert(result.message);
 			} 
             else {
-				alert(result.error); // Show the error message
-				console.error('Error details:', result.error, result.stack); // Log the error details in the console
+				alert(result.error);
+				console.error('Error details:', result.error, result.stack);
 			}
 		} 
         catch (err) {

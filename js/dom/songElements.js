@@ -29,20 +29,25 @@ export function createSongCard(song) {
 		let volume = document.querySelector('.volume-slider')
 
 		try {
-			const response = await fetch(`https://shmoovin.adaptable.app/presigned-url/${song.file_path.split('/').pop()}`);
+			const response = await fetch(`https://shmoovin.adaptable.app/presigned-url/${encodeURIComponent(song.file_path.split('/').pop())}`);
 			const data = await response.json();
-			audio.src = data.url;
+			if (data.url) {
+				audio.src = data.url;
 
-			audio.addEventListener('loadedmetadata', function() {
-				createMediaCenter(song);
-				pauseAllAudio();
-				audio.currentTime = 0;
-				resetAllSliders();
-				audio.play();
-				audio.volume = (volume.value / 100)
-				volumeLevelTag = volume.value;
-			});
-		} catch (error) {
+				audio.addEventListener('loadedmetadata', function() {
+					createMediaCenter(song);
+					pauseAllAudio();
+					audio.currentTime = 0;
+					resetAllSliders();
+					audio.play();
+					audio.volume = (volume.value / 100);
+					volumeLevelTag = volume.value;
+				});
+			} else {
+				console.error('Pre-signed URL not returned in response:', data);
+			}
+		} 
+		catch (error) {
 			console.error('Error fetching pre-signed URL:', error);
 		}
 	});
