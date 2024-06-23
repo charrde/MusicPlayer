@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 		const data = await response.json();
-		albumSelect.innerHTML = '<option value="">Single</option>';
+		albumSelect.innerHTML = '<option value="0">Single</option>';
 		data.albums.forEach(album => {
 			const option = document.createElement('option');
 			option.value = album.id;
@@ -94,21 +94,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		const formData = new FormData(e.target);
 
-		const response = await fetch('https://shmoovin.adaptable.app/add-song', {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer ${token}`
-			},
-			body: formData,
-		});
+		try {
+			const response = await fetch('https://shmoovin.adaptable.app/add-song', {
+				method: 'POST',
+				headers: {
+					'Authorization': `Bearer ${token}`
+				},
+				body: formData,
+			});
 
-		const result = await response.json();
+			const result = await response.json();
 
-		if (response.ok) {
-			alert(result.message);
+			if (response.ok) {
+				alert(result.message);
+			} else {
+				alert(result.error); // Show the error message
+				console.error('Error details:', result.error, result.stack); // Log the error details in the console
+			}
 		} 
-        else {
-			alert(result.error);
+        catch (err) {
+			console.error('Fetch error:', err);
 		}
 	});
 
