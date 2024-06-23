@@ -29,7 +29,8 @@ export function createSongCard(song) {
 		let volume = document.querySelector('.volume-slider')
 
 		try {
-			const response = await fetch(`https://shmoovin.adaptable.app/presigned-url/${encodeURIComponent(song.file_path.split('/').pop())}`);
+			const decodedFilePath = decodeURIComponent(song.file_path.split('/').pop());
+			const response = await fetch(`https://shmoovin.adaptable.app/presigned-url/${encodeURIComponent(decodedFilePath)}`);
 			const data = await response.json();
 			if (data.url) {
 				audio.src = data.url;
@@ -43,7 +44,8 @@ export function createSongCard(song) {
 					audio.volume = (volume.value / 100);
 					volumeLevelTag = volume.value;
 				});
-			} else {
+			} 
+			else {
 				console.error('Pre-signed URL not returned in response:', data);
 			}
 		} 
