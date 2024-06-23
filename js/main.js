@@ -41,4 +41,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	loadMusic();
     loadVolumeLevel();
 });
-
