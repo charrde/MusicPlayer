@@ -11,11 +11,10 @@ async function loadMusic() {
 	try {
 		const response = await fetchDatabase();
 		const songs = response.songs;
-		console.log("Songs fetched:", songs);
+		musicList.innerHTML = ``;
 
 		songs.forEach(song => {
 			const songCard = createSongCard(song);
-			musicList.innerHTML = ``;
 			musicList.appendChild(songCard);
 		});
 	} 
