@@ -83,6 +83,26 @@ nav {
     align-items: center;
 }
 
+@keyframes loadingContentAnimation {
+    0% {
+      background-position: -30px 0;
+    }
+    100% {
+      background-position: 70em 0;
+    }
+  }
+  
+.loading-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loadingContentAnimation;
+    animation-timing-function: linear;
+    background: radial-gradient(circle,rgba(171, 157, 222, 0.2) 3%, rgba(27,23,42,1) 33%);
+    height: 50px;
+    border-radius: 10px;
+  }
+
 .song-card-details h3 {
     margin-top: 0;
     font-size: 1.5rem;
@@ -122,7 +142,7 @@ nav {
 
 .media-center {
     display: flex;
-    background-color: #1A1629;
+    background-color: #1B172A;
     width: 100%;
     flex-wrap: wrap;
     padding: 20px;
