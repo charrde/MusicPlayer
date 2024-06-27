@@ -1,8 +1,8 @@
 import { createMediaCenter } from "./mediaCenterElements.js";
 
 export function createSongCard(song) {
-	const songCard = document.querySelector('.song-list');
-	songCard.innerHTML = ``;
+	const songCard = document.createElement('li');
+	songCard.className = "song-list";
 	songCard.innerHTML = `
         <div class="song-card">
             <div class="song-card-details">

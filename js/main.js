@@ -15,6 +15,7 @@ async function loadMusic() {
 
 		songs.forEach(song => {
 			const songCard = createSongCard(song);
+			musicList.innerHTML = ``;
 			musicList.appendChild(songCard);
 		});
 	} 
