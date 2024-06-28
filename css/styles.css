@@ -24,11 +24,11 @@ header {
 .center-container {
     margin: 0 auto;
     max-width: 1200px;
-    padding: 0 20px;
 }
 
-header .center-container {
-    padding: 0;
+.padding-container {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 h1 {
@@ -149,6 +149,10 @@ nav {
     opacity: 1;
     transition: opacity 0.2s, bottom 0.2s;
     visibility: visible;
+}
+
+.media-center .center-container {
+    width: 100%;
 }
 
 .top-controls {
