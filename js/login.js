@@ -18,6 +18,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 		window.location.href = 'index.html';
 	} 
 	else {
-		document.getElementById('error.message').textContent = "Incorrect username or password.";
+		document.getElementById('error-message').textContent = "Incorrect username or password.";
 	}
 });
