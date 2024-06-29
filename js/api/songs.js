@@ -1,5 +1,5 @@
 export function fetchDatabase() {
-	const endpoint = "https://shmoovin.adaptable.app/random-songs";
+	const endpoint = "/api/random-songs";
 	return fetch(endpoint)
 		.then(response => {
 			if (!response.ok) {

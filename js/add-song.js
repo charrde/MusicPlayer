@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	const loadArtists = async () => {
-		const response = await fetch('https://shmoovin.adaptable.app/artists', {
+		const response = await fetch('/api/artists', {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const loadAlbums = async () => {
 		const artistId = artistSelect.value;
-		const response = await fetch(`https://shmoovin.adaptable.app/albums/${artistId}`, {
+		const response = await fetch(`/api/albums/${artistId}`, {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 
 	const loadExistingSongs = async () => {
-		const response = await fetch('https://shmoovin.adaptable.app/songs', {
+		const response = await fetch('/api/songs', {
 			headers: {
 				'Authorization': `Bearer ${token}`
 			}
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.getElementById('save-artist-button').addEventListener('click', async () => {
 		const name = document.getElementById('new-artist-name').value;
-		const response = await fetch('https://shmoovin.adaptable.app/artists', {
+		const response = await fetch('/api/artists', {
 			method: 'POST',
 			headers: { 
 				'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const artist_id = artistSelect.value;
 		const release_year = document.getElementById('new-album-release-year').value;
 		const genres = document.getElementById('new-album-genres').value;
-		const response = await fetch('https://shmoovin.adaptable.app/albums', {
+		const response = await fetch('/api/albums', {
 			method: 'POST',
 			headers: { 
 				'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const formData = new FormData(e.target);
 
 		try {
-			const response = await fetch('https://shmoovin.adaptable.app/add-song', {
+			const response = await fetch('/api/add-song', {
 				method: 'POST',
 				headers: {
 					'Authorization': `Bearer ${token}`
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const existingSongId = existingSongSelect.value;
 
 		try {
-			const response = await fetch(`https://shmoovin.adaptable.app/update-song-file/${existingSongId}`, {
+			const response = await fetch(`/api/update-song-file/${existingSongId}`, {
 				method: 'POST',
 				headers: {
 					'Authorization': `Bearer ${token}`

@@ -5,12 +5,12 @@ const musicList = document.querySelector('.music');
 const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
 
-function getCookie(name) {
-	const value = `; ${document.cookie}`;
-	console.log('Raw cookies:', value);
-	const parts = value.split(`; ${name}=`);
-	if (parts.length === 2) return parts.pop().split(';').shift();
-	return null;
+async function checkAuth() {
+	const response = await fetch('/api/auth-check', {
+		credentials: 'include'
+	});
+	const data = await response.json();
+	return data.authenticated;
 }
 
 async function loadMusic() {
@@ -31,27 +31,29 @@ async function loadMusic() {
 }
 
 function loadVolumeLevel() {
-    const volume = document.querySelector('.volume-slider');
-    let volumeLevelTag = document.querySelector('.volume-level');
+    const volume = document.querySelector('.volume-slider')
+    let volumeLevelTag = document.querySelector('.volume-level')
     volumeLevelTag.textContent = volume.value + '%';
 }
 
 volume.addEventListener('input', function(event) { 
-    let volumeLevelTag = document.querySelector('.volume-level');
+    let volumeLevelTag = document.querySelector('.volume-level')
     volumeLevelTag.textContent = volume.value + '%';
     if(audio) {
-        audio.volume = (volume.value / 100);
+        audio.volume = (volume.value / 100)
     }
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
-	const token = getCookie('token');
-	console.log('Token from cookies:', token);
-
-	if (token) {
-		await loadMusic();
-		document.getElementById('web-content').style.display = 'unset';
-	} else {
-		console.log('login page redirection');
+	try {
+		const isAuthenticated = await checkAuth();
+		if (isAuthenticated) {
+			await loadMusic();
+			document.getElementById('web-content').style.display = 'unset';
+		} else {
+			window.location.href = 'login.html';
+		}
+	} catch (error) {
+		window.location.href = 'login.html';
 	}
 });
