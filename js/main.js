@@ -30,27 +30,27 @@ async function loadMusic() {
 }
 
 function loadVolumeLevel() {
-    const volume = document.querySelector('.volume-slider')
-    let volumeLevelTag = document.querySelector('.volume-level')
+    const volume = document.querySelector('.volume-slider');
+    let volumeLevelTag = document.querySelector('.volume-level');
     volumeLevelTag.textContent = volume.value + '%';
 }
 
 volume.addEventListener('input', function(event) { 
-    let volumeLevelTag = document.querySelector('.volume-level')
+    let volumeLevelTag = document.querySelector('.volume-level');
     volumeLevelTag.textContent = volume.value + '%';
     if(audio) {
-        audio.volume = (volume.value / 100)
+        audio.volume = (volume.value / 100);
     }
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
 	const token = getCookie('token');
+	console.log('Token from cookies:', token);
 
 	if (token) {
 		await loadMusic();
 		document.getElementById('web-content').style.display = 'unset';
-	}
-	else {
+	} else {
 		window.location.href = 'login.html';
 	}
 });
