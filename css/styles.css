@@ -9,6 +9,10 @@ body {
     flex-direction: column;
 }
 
+#web-content {
+    display: none;
+}
+
 h1, h2, h3, h4, h5, h6, p, li, a {
     color: #e1def2;
 }
@@ -81,6 +85,30 @@ nav {
     justify-content: space-between;
     margin-top: 20px;
     align-items: center;
+}
+
+.loading-wheel {
+    border: 16px solid rgba(171, 157, 222, 0.2);
+    border-top: 16px solid rgba(27,23,42,1);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: spinLoadingWheelAnimation;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes spinLoadingWheelAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes loadingContentAnimation {

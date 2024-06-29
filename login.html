@@ -5,16 +5,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/login.css">
     <script src="js/login.js" defer></script>
 </head>
 <body>
-	<h1>Login</h1>
-	<form id="login-form">
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="username" required><br><br>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required><br><br>
-		<button type="submit">Login</button>
-	</form>
+	<main>
+		<div class="loading">
+			<div class="loading-wheel"></div>
+		</div>
+		<div id="web-content">
+			<div class="center-container">
+				<div class="login-container">
+					<h1>shmoovin.</h1>
+					<div class="form-container">
+						<form id="login-form" class="login-form">
+							<div class="gradient-border"><input type="text" id="username" name="username" class="input" placeholder="Username" required></div>
+							<div class="gradient-border"><input type="password" id="password" name="password" class="input" placeholder="Password" required></div>
+							<p id="error-message" class="error-message"></p>
+							<div class="gradient-border"><button type="submit" class="login-button">Login</button></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 </body>
 </html>

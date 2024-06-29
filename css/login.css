@@ -1,0 +1,120 @@
+html {
+    font-family:'Manrope', sans-serif;
+}
+
+body {
+    background-color: #0f0b1e;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, a, label, input, button {
+    color: #e1def2;
+}
+
+h1 {
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.login-container {
+    background-color: rgba(171, 157, 222, 0.2);
+    width: 100%;
+    padding: 40px 20px;
+    border-radius: 10px;
+}
+
+.center-container {
+    margin: 0 auto;
+    max-width: 400px;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    margin-top: 40px;
+    flex-wrap: wrap;
+    display: flex;
+    height: 100%;
+}
+
+.login-form {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.label {
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    background-color: #3F3758;
+    border: none;
+    border: none;
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+.input::-moz-placeholder {
+    color: #e1def2;
+    opacity: 1;
+}
+
+.gradient-border {
+    padding: 2px;
+    width: 100%;
+    background: linear-gradient(to right,rgba(88, 60, 197, 1.00) 33%, rgba(61, 42, 134, 1.00) 66%);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.gradient-border:last-of-type {
+    margin-top: 40px;
+}
+
+.login-button {
+    width: 100%;
+    align-self: flex-end;
+    background-color: rgba(171, 157, 222, 0.5);
+    border: none;
+    padding: 20px;
+    display: inline-block;
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+.login-button:hover {
+    cursor: pointer;
+}
+
+.loading-wheel {
+    border: 16px solid rgba(171, 157, 222, 0.2);
+    border-top: 16px solid rgba(27,23,42,1);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: spinLoadingWheelAnimation;
+}
+
+.loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes spinLoadingWheelAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    margin: 0;
+}

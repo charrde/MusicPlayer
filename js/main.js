@@ -1,11 +1,16 @@
-console.log("Successfully loaded MAIN.JS");
-
 import { fetchDatabase } from "./api/songs.js";
 import { createSongCard } from "./dom/songElements.js";
 
 const musicList = document.querySelector('.music');
 const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
+
+function getCookie(name) {
+	const value = `; ${document.cookie}`;
+	const parts = value.split(`; ${name}=`);
+	if (parts.length === 2) return parts.pop().split(';').shift();
+	return null;
+}
 
 async function loadMusic() {
 	try {
@@ -17,6 +22,7 @@ async function loadMusic() {
 			const songCard = createSongCard(song);
 			musicList.appendChild(songCard);
 		});
+		loadVolumeLevel();
 	} 
 	catch (error) {
 		console.error("Error fetching songs:", error);
@@ -37,7 +43,14 @@ volume.addEventListener('input', function(event) {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-	loadMusic();
-    loadVolumeLevel();
+document.addEventListener('DOMContentLoaded', async function() {
+	const token = getCookie('token');
+
+	if (token) {
+		await loadMusic();
+		document.getElementById('web-content').style.display = 'unset';
+	}
+	else {
+		window.location.href = 'login.html';
+	}
 });

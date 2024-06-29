@@ -4,7 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	const existingSongSelect = document.getElementById('existing-song');
 	const addArtistModal = document.getElementById('add-artist-modal');
 	const addAlbumModal = document.getElementById('add-album-modal');
-	const token = localStorage.getItem('token');
+
+	function getCookie(name) {
+		const value = `; ${document.cookie}`;
+		const parts = value.split(`; ${name}=`);
+		if (parts.length === 2) return parts.pop().split(';').shift();
+		return null;
+	}
+
+	const token = getCookie('token');
+
 
 	const loadArtists = async () => {
 		const response = await fetch('https://shmoovin.adaptable.app/artists', {
@@ -45,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				'Authorization': `Bearer ${token}`
 			}
 		});
+
 		const data = await response.json();
 		existingSongSelect.innerHTML = '<option value="">Select a song to update</option>';
 		data.songs.forEach(song => {

@@ -3,6 +3,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
 	const username = document.getElementById('username').value;
 	const password = document.getElementById('password').value;
+	document.getElementById('error.message').textContent = "";
 
 	const response = await fetch('https://shmoovin.adaptable.app/login', {
 		method: 'POST',
@@ -12,10 +13,11 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
 	const data = await response.json();
 	if (data.token) {
-		localStorage.setItem('token', data.token);
-		alert('Login successful');
-		window.location.href = 'add-song.html';
-	} else {
-		alert('Login failed');
+		document.getElementById('web-content').style.display = 'none';
+		document.getElementById('loading').style.display = 'flex';
+		window.location.href = 'index.html';
+	} 
+	else {
+		document.getElementById('error.message').textContent = "Incorrect username or password.";
 	}
 });
