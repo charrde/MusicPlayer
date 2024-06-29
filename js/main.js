@@ -6,13 +6,18 @@ const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
 
 async function checkAuth() {
-	const response = await fetch('/api/auth-check', {
-		credentials: 'include'
-	});
-	const data = await response.json();
-	return data.authenticated;
+	try {
+		const response = await fetch('/api/auth-check', {
+			credentials: 'include'
+		});
+		const data = await response.json();
+		console.log('Auth check response:', data);
+		return data.authenticated;
+	} catch (error) {
+		console.error('Error during auth check:', error.message);
+		return false;
+	}
 }
-
 async function loadMusic() {
 	try {
 		const response = await fetchDatabase();
