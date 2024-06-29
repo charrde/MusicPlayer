@@ -52,6 +52,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 		await loadMusic();
 		document.getElementById('web-content').style.display = 'unset';
 	} else {
-		window.location.href = 'login.html';
+		console.log('login page redirection');
 	}
 });
