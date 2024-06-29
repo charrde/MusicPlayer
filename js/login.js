@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 	document.getElementById('error-message').textContent = "";
 
 	try {
-		const response = await fetch('https://shmoovin.adaptable.app/login', {
+		const response = await fetch('/api/login', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username, password }),
@@ -15,7 +15,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
 		const data = await response.json();
 		if (response.ok) {
-			console.log('Login successful, redirecting...');
 			window.location.href = 'index.html';
 		} else {
 			document.getElementById('error-message').textContent = "Incorrect username or password.";
