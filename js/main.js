@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		const isAuthenticated = await checkAuth();
 		if (isAuthenticated) {
 			await loadMusic();
+			document.getElementById('loading-screen').style.display = 'none';
 			document.getElementById('web-content').style.display = 'unset';
 		} 
 		else {
