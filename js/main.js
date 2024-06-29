@@ -50,10 +50,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 		if (isAuthenticated) {
 			await loadMusic();
 			document.getElementById('web-content').style.display = 'unset';
-		} else {
-			window.location.href = 'login.html';
+		} 
+		else {
+			console.log("check auth failed")
 		}
 	} catch (error) {
-		window.location.href = 'login.html';
+		console.log("error")
 	}
 });
