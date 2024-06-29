@@ -3,7 +3,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 
 	const username = document.getElementById('username').value;
 	const password = document.getElementById('password').value;
-	document.getElementById('error.message').textContent = "";
+	document.getElementById('error-message').textContent = "";
 
 	const response = await fetch('https://shmoovin.adaptable.app/login', {
 		method: 'POST',
