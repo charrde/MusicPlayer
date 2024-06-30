@@ -4,13 +4,13 @@ html {
 
 body {
     background-color: #0f0b1e;
-    display: flex;
-    position: relative;
-    flex-direction: column;
 }
 
 #web-content {
     display: none;
+    position: relative;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6, p, li, a {

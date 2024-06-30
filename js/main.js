@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 		if (isAuthenticated) {
 			await loadMusic();
 			document.getElementById('loading-screen').style.display = 'none';
-			document.getElementById('web-content').style.display = 'unset';
+			document.getElementById('web-content').style.display = 'flex';
 		} 
 		else {
 			console.log("check auth failed")
