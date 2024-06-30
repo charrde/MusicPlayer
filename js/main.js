@@ -11,10 +11,8 @@ async function checkAuth() {
 			credentials: 'include'
 		});
 		const data = await response.json();
-		console.log('Auth check response:', data);
 		return data.authenticated;
 	} catch (error) {
-		console.error('Error during auth check:', error.message);
 		return false;
 	}
 }
@@ -58,9 +56,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 			document.getElementById('web-content').style.display = 'flex';
 		} 
 		else {
-			console.log("check auth failed")
+			window.location.href = 'login.html';
 		}
 	} catch (error) {
-		console.log("error")
+		window.location.href = 'login.html';
 	}
 });
