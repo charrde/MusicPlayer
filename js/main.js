@@ -5,17 +5,6 @@ const musicList = document.querySelector('.music');
 const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
 
-async function checkAuth() {
-	try {
-		const response = await fetch('/api/auth-check', {
-			credentials: 'include'
-		});
-		const data = await response.json();
-		return data.authenticated;
-	} catch (error) {
-		return false;
-	}
-}
 async function loadMusic() {
 	try {
 		const response = await fetchDatabase();
@@ -48,17 +37,5 @@ volume.addEventListener('input', function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
-	try {
-		const isAuthenticated = await checkAuth();
-		if (isAuthenticated) {
-			await loadMusic();
-			document.getElementById('loading-screen').style.display = 'none';
-			document.getElementById('web-content').style.display = 'flex';
-		} 
-		else {
-			window.location.href = 'login.html';
-		}
-	} catch (error) {
-		window.location.href = 'login.html';
-	}
+		await loadMusic();
 });
