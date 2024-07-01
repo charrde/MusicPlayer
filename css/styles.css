@@ -15,6 +15,7 @@ body {
 
 h1, h2, h3, h4, h5, h6, p, li, a {
     color: #e1def2;
+    margin: 0;
 }
 
 li {
@@ -29,6 +30,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
 }
 
 .search-bar {
@@ -53,10 +55,6 @@ header {
 .padding-container {
     padding-left: 20px;
     padding-right: 20px;
-}
-
-h1 {
-    padding: 20px;
 }
 
 .bottom-mobile {
@@ -98,6 +96,10 @@ nav {
 
 .volume {
     display: none;
+}
+
+.hot-now-section {
+    margin-top: 100px;
 }
 
 .song-card {
