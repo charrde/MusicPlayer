@@ -25,6 +25,26 @@ header {
     background-color: #2E2845;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar {
+    height: fit-content;
+    width: 600px;
+    padding: 10px;
+    background-color: #3F3758;
+    border: none;
+    color: #e1def2;
+    border-radius: 10px;
+}
+
+.search-bar::-moz-placeholder {
+    opacity: 1;
+}
+
 .center-container {
     margin: 0 auto;
     max-width: 1200px;

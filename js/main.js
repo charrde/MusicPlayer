@@ -5,6 +5,38 @@ const musicList = document.querySelector('.music');
 const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
 
+async function headerAuthDisplay() {
+	try {
+		const response = await fetch('/api/auth-check', {
+			credentials: 'include'
+		});
+		const data = await response.json();
+
+		const authDisplayDiv = document.getElementById('header-login-auth-display');
+		authDisplayDiv.innerHTML = '';
+		const pTag = document.createElement('p');
+
+		if (data.authenticated) {
+			const userInfoResponse = await fetch('/api/user-info', {
+				credentials: 'include'
+			});
+			const userInfo = await userInfoResponse.json();
+			pTag.textContent = `User ID: ${userInfo.user.id}`;
+		} else {
+			pTag.textContent = 'Login';
+		}
+
+		authDisplayDiv.appendChild(pTag);
+	} catch (error) {
+		const authDisplayDiv = document.getElementById('header-login-auth-display');
+		authDisplayDiv.innerHTML = '';
+
+		const pTag = document.createElement('p');
+		pTag.textContent = 'Login';
+		authDisplayDiv.appendChild(pTag);
+	}
+}
+
 async function loadMusic() {
 	try {
 		const response = await fetchDatabase();
@@ -37,5 +69,6 @@ volume.addEventListener('input', function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', async function() {
+		headerAuthDisplay();
 		await loadMusic();
 });
