@@ -38,7 +38,6 @@ export function createTopPlayed() {
 	const hotSongsScrollingElement = document.getElementById('hot-now-songs');
 
     hotSongsScrollBack.addEventListener('click', function () {
-        console.log('scroll back');
         const desiredElement = document.querySelector('.song-card');
         let scrollDistance = desiredElement.offsetWidth;
 
@@ -53,7 +52,6 @@ export function createTopPlayed() {
     });
 
     hotSongsScrollForward.addEventListener('click', function () {
-        console.log('scroll forward');
         const desiredElement = document.querySelector('.song-card');
         let scrollDistance = desiredElement.offsetWidth;
 
