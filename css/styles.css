@@ -190,6 +190,7 @@ nav {
 .hot-now-songs {
     margin-top: 40px;
     display: block;
+    overflow-y: hidden;
 }
 
 .song-card {
@@ -401,7 +402,6 @@ nav {
         display: flex;
         justify-content: space-between;
         overflow-x: hidden;
-        overflow-y: hidden;
     }
     .song-card {
         display: flex;
