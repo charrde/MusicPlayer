@@ -44,12 +44,11 @@ export function createTopPlayed() {
 
         hotSongsScrollingElement.scrollLeft -= scrollDistance;
         hotSongsScrollingElement.addEventListener('scrollend', function () {
-            if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.clientWidth) {
-                hotSongsScrollBack.disabled = true;
-            }
-            else {
-                hotSongsScrollForward.disabled = false;
-            }
+			hotSongsScrollForward.disabled = false;
+
+			if (hotSongsScrollingElement.scrollLeft <= 0) {
+				hotSongsScrollBack.disabled = true;
+			}
         });
     });
 
@@ -59,14 +58,25 @@ export function createTopPlayed() {
         let scrollDistance = desiredElement.offsetWidth;
 
         hotSongsScrollingElement.scrollLeft += scrollDistance;
-        hotSongsScrollingElement.addEventListener('scrollend', function () {
-            if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.clientWidth) {
-                hotSongsScrollForward.disabled = true;
-            }
-            else {
-                hotSongsScrollBack.disabled = false;
-            }
-        });
+        hotSongsScrollBack.disabled = false;
+
+        if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
+            hotSongsScrollForward.disabled = true;
+        }
+    });
+
+    hotSongsScrollingElement.addEventListener('scroll', function () {
+        if (hotSongsScrollingElement.scrollLeft <= 0) {
+            hotSongsScrollBack.disabled = true;
+        } else {
+            hotSongsScrollBack.disabled = false;
+        }
+
+        if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
+            hotSongsScrollForward.disabled = true;
+        } else {
+            hotSongsScrollForward.disabled = false;
+        }
     });
 }
 
