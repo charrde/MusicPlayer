@@ -200,11 +200,13 @@ nav {
 
 .song-card-details-wrapper {
     width: 100%;
+    display: flex;
 }
 
 .song-card {
     display: flex;
     margin-bottom: 10px;
+    margin-right: 10px;
     position: relative;
     flex-direction: row-reverse;
 }

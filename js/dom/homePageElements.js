@@ -90,12 +90,12 @@ export function createSongCard(song) {
 	songCard.innerHTML = `
     	<div class="song-card-details-wrapper">
             <div class="song-card-album-image">
-                        <img src="../img/Album-Cover.jpg">
-                    </div>
-                    <div class="song-card-details">
-                        <h3>${song.song_title}</h3>
-                        <h4>${song.artist_name}</h4>
-                    </div>
+                <img src="../img/Album-Cover.jpg">
+            </div>
+            <div class="song-card-details">
+                <h3>${song.song_title}</h3>
+                <h4>${song.artist_name}</h4>
+            </div>
         </div>
 		<div class="song-card-controls-wrapper">
             <div id="controls">
