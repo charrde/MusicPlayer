@@ -111,12 +111,12 @@ export function createSongCard(song) {
     
 
     songCard.addEventListener('mouseenter', function() {
-        const controls = document.querySelector('.song-card-controls');
+        const controls = songCard.querySelector('.song-card-controls');
         controls.style.display = 'block';
     });
 
     songCard.addEventListener('mouseleave', function() {
-        const controls = document.querySelector('.song-card-controls');
+        const controls = songCard.querySelector('.song-card-controls');
         controls.style.display = 'none';
     });
 
