@@ -115,6 +115,11 @@ export function createSongCard(song) {
         controls.style.display = 'block';
     });
 
+    songCard.addEventListener('mouseleave', function() {
+        const controls = document.querySelector('.song-card-controls');
+        controls.style.display = 'none';
+    });
+
 	playSong.addEventListener('click', async function () {
 		let volumeLevelTag = document.querySelector('.volume-level');
 		let volume = document.querySelector('.volume-slider');
