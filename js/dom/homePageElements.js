@@ -43,11 +43,11 @@ export function createTopPlayed() {
         let scrollDistance = desiredElement.offsetWidth;
 
         hotSongsScrollingElement.scrollLeft -= scrollDistance;
-        if (hotSongsScrollForward.disabled) {
-            hotSongsScrollForward.disabled = false;
-        }
         hotSongsScrollingElement.addEventListener('scrollend', function () {
             hotSongsScrollBack.disabled = true;
+            if (hotSongsScrollForward.disabled) {
+                hotSongsScrollForward.disabled = false;
+            }
         });
     });
 
@@ -57,11 +57,11 @@ export function createTopPlayed() {
         let scrollDistance = desiredElement.offsetWidth;
 
         hotSongsScrollingElement.scrollLeft += scrollDistance;
-        if (hotSongsScrollBack.disabled) {
-            hotSongsScrollBack.disabled = false;
-        }
         hotSongsScrollingElement.addEventListener('scrollend', function () {
             hotSongsScrollForward.disabled = true;
+            if (hotSongsScrollBack.disabled) {
+                hotSongsScrollBack.disabled = false;
+            }
         });
     });
 }
