@@ -70,6 +70,9 @@ export function createSongCard(song) {
 	const songCard = document.createElement('div');
 	songCard.className = 'song-card';
 	songCard.innerHTML = `
+    	<div class="song-card-album-image">
+            <img src="../img/Album-Cover.jpg">
+		</div>
 		<div class="song-card-details">
 			<h3>${song.song_title}</h3>
 			<h4>${song.artist_name}</h4>
