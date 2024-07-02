@@ -88,22 +88,26 @@ export function createSongCard(song) {
 	const songCard = document.createElement('div');
 	songCard.className = 'song-card';
 	songCard.innerHTML = `
-    	<div class="song-card-album-image">
-            <img src="../img/Album-Cover.jpg">
-		</div>
-		<div class="song-card-details">
-			<h3>${song.song_title}</h3>
-			<h4>${song.artist_name}</h4>
-		</div>
-		<div id="controls" class="song-card-controls">
-			<button class="play-song-button">
-				<svg class="play-icon" version="1.1" width="40px" height="40px" viewBox="-3 0 28 28" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(-419 -571)" fill="#000">
-						<path d="m440.42 583.55-18.997-12.243c-1.127-0.607-2.418-0.544-2.418 1.635v24.108c0 1.992 1.385 2.306 2.418 1.635l18.997-12.243c0.782-0.799 0.782-2.093 0-2.892"></path>
-					</g>
-				</svg>
-			</button>
-		</div>
+    	<div>
+            <div class="song-card-album-image">
+                        <img src="../img/Album-Cover.jpg">
+                    </div>
+                    <div class="song-card-details">
+                        <h3>${song.song_title}</h3>
+                        <h4>${song.artist_name}</h4>
+                    </div>
+        </div>
+		<div>
+            <div id="controls" class="song-card-controls">
+                <button class="play-song-button">
+                    <svg class="play-icon" version="1.1" width="40px" height="40px" viewBox="-3 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(-419 -571)" fill="#000">
+                            <path d="m440.42 583.55-18.997-12.243c-1.127-0.607-2.418-0.544-2.418 1.635v24.108c0 1.992 1.385 2.306 2.418 1.635l18.997-12.243c0.782-0.799 0.782-2.093 0-2.892"></path>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </div>
 	`;
 
 	const playSong = songCard.querySelector('.play-song-button');

@@ -201,7 +201,6 @@ nav {
 
 .song-card {
     display: flex;
-    align-items: center;
     margin-bottom: 10px;
     position: relative;
 }
@@ -408,10 +407,6 @@ nav {
         display: flex;
         justify-content: space-between;
         overflow-x: hidden;
-    }
-    .song-card {
-        display: flex;
-        align-items: center;
     }
     .song-card-column {
         flex: 0 0 calc(100% / 3);
