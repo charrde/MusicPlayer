@@ -407,5 +407,6 @@ nav {
         display: flex;
         align-items: center;
         min-width: calc(100% / 3);
+        margin-top: 0;
     }
 }
