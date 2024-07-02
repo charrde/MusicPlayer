@@ -78,6 +78,12 @@ export function createTopPlayed() {
     });
 }
 
+export function createSongCardColumn() {
+	const songCardColumn = document.createElement('div');
+	songCardColumn.className = 'song-card-column';
+	return songCardColumn;
+}
+
 export function createSongCard(song) {
 	const songCard = document.createElement('div');
 	songCard.className = 'song-card';

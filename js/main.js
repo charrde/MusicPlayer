@@ -1,4 +1,4 @@
-import { createTopPlayed, createSongCard } from './dom/homePageElements.js';
+import { createTopPlayed, createSongCard, createSongCardColumn } from './homePageElements.js';
 import { fetchDatabase } from './api/songs.js';
 
 async function headerAuthDisplay() {
@@ -17,7 +17,7 @@ async function headerAuthDisplay() {
 				credentials: 'include'
 			});
 			const userInfo = await userInfoResponse.json();
-			pTag.textContent = `User ID: ${userInfo.user.id}`;;
+			pTag.textContent = `User ID: ${userInfo.user.id}`;
 		} else {
 			pTag.textContent = 'Login';
 		}
@@ -40,10 +40,19 @@ async function loadMusic() {
 		const hotNowSongsContainer = document.getElementById('hot-now-songs');
 		hotNowSongsContainer.innerHTML = '';
 
-		songs.forEach(song => {
+		let songCardColumn = createSongCardColumn();
+		songs.forEach((song, index) => {
 			const songCard = createSongCard(song);
-			hotNowSongsContainer.appendChild(songCard);
+			songCardColumn.appendChild(songCard);
+			if ((index + 1) % 2 === 0) {
+				hotNowSongsContainer.appendChild(songCardColumn);
+				songCardColumn = createSongCardColumn();
+			}
 		});
+		if (songCardColumn.children.length > 0) {
+			hotNowSongsContainer.appendChild(songCardColumn);
+		}
+
 		loadVolumeLevel();
 	} catch (error) {
 		console.error('Error fetching songs:', error);
@@ -55,18 +64,6 @@ function loadVolumeLevel() {
 	let volumeLevelTag = document.querySelector('.volume-level');
 	volumeLevelTag.textContent = volume.value + '%';
 }
-
-/*const volume = document.querySelector('.volume-slider');
-const audio = document.querySelector('audio');
-
-volume.addEventListener('input', function (event) {
-	let volumeLevelTag = document.querySelector('.volume-level');
-	volumeLevelTag.textContent = volume.value + '%';
-	if (audio) {
-		audio.volume = volume.value / 100;
-	}
-}); */
-
 document.addEventListener('DOMContentLoaded', async function () {
 	headerAuthDisplay();
 	createTopPlayed();

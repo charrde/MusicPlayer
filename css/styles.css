@@ -196,8 +196,7 @@ nav {
 .song-card {
     display: flex;
     align-items: center;
-    min-width: calc(100% / 3);
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .song-card-album-image {
@@ -406,7 +405,8 @@ nav {
     .song-card {
         display: flex;
         align-items: center;
-        min-width: calc(100% / 3);
-        margin-top: 0;
+    }
+    .song-card-column {
+        flex: 0 0 calc(100% / 3);
     }
 }
