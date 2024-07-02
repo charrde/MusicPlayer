@@ -185,20 +185,18 @@ nav {
     background: radial-gradient(circle,rgba(171, 157, 222, 0.2) 3%, rgba(27,23,42,1) 33%);
     height: 50px;
     border-radius: 10px;
-  }
+}
 
 .hot-now-songs {
     margin-top: 40px;
-    display: flex;
-    justify-content: space-between;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    display: block;
 }
 
 .song-card {
     display: flex;
     align-items: center;
     min-width: calc(100% / 3);
+    margin-top: 10px;
 }
 
 .song-card-album-image {
@@ -397,5 +395,17 @@ nav {
     }
     .search-bar {
         display: inline-block;
+    }
+    .hot-now-songs {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    .song-card {
+        display: flex;
+        align-items: center;
+        min-width: calc(100% / 3);
     }
 }
