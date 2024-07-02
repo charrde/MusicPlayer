@@ -193,16 +193,20 @@ nav {
     overflow-y: hidden;
 }
 
-.song-card-controls {
+.song-card-controls-wrapper {
     display: none;
-    position: absolute;
-    right: 0;
+    position: fixed;
+}
+
+.song-card-details-wrapper {
+    width: 100%;
 }
 
 .song-card {
     display: flex;
     margin-bottom: 10px;
     position: relative;
+    flex-direction: row-reverse;
 }
 
 .song-card-album-image {

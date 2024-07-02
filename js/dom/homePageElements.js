@@ -88,7 +88,7 @@ export function createSongCard(song) {
 	const songCard = document.createElement('div');
 	songCard.className = 'song-card';
 	songCard.innerHTML = `
-    	<div>
+    	<div class="song-card-details-wrapper">
             <div class="song-card-album-image">
                         <img src="../img/Album-Cover.jpg">
                     </div>
@@ -97,8 +97,8 @@ export function createSongCard(song) {
                         <h4>${song.artist_name}</h4>
                     </div>
         </div>
-		<div>
-            <div id="controls" class="song-card-controls">
+		<div class="song-card-controls-wrapper">
+            <div id="controls">
                 <button class="play-song-button">
                     <svg class="play-icon" version="1.1" width="40px" height="40px" viewBox="-3 0 28 28" xmlns="http://www.w3.org/2000/svg">
                         <g transform="translate(-419 -571)" fill="#000">
@@ -115,12 +115,12 @@ export function createSongCard(song) {
     
 
     songCard.addEventListener('mouseenter', function() {
-        const controls = songCard.querySelector('.song-card-controls');
+        const controls = songCard.querySelector('.song-card-controls-wrapper');
         controls.style.display = 'block';
     });
 
     songCard.addEventListener('mouseleave', function() {
-        const controls = songCard.querySelector('.song-card-controls');
+        const controls = songCard.querySelector('.song-card-controls-wrapper');
         controls.style.display = 'none';
     });
 
