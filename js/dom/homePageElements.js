@@ -95,7 +95,7 @@ export function createSongCard(song) {
 			<h3>${song.song_title}</h3>
 			<h4>${song.artist_name}</h4>
 		</div>
-		<div id="controls">
+		<div id="controls" class="song-card-controls">
 			<button class="play-song-button">
 				<svg class="play-icon" version="1.1" width="40px" height="40px" viewBox="-3 0 28 28" xmlns="http://www.w3.org/2000/svg">
 					<g transform="translate(-419 -571)" fill="#000">
@@ -108,6 +108,12 @@ export function createSongCard(song) {
 
 	const playSong = songCard.querySelector('.play-song-button');
 	const audio = document.querySelector('audio');
+    
+
+    songCard.addEventListener('mouseenter', function() {
+        const controls = document.querySelector('.song-card-controls');
+        controls.style.display = 'block';
+    });
 
 	playSong.addEventListener('click', async function () {
 		let volumeLevelTag = document.querySelector('.volume-level');

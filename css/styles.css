@@ -193,10 +193,17 @@ nav {
     overflow-y: hidden;
 }
 
+.song-card-controls {
+    display: none;
+    position: absolute;
+    right: 0;
+}
+
 .song-card {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .song-card-album-image {
@@ -210,7 +217,7 @@ nav {
 .play-song-button {
     width: 48px;
     height: 48px;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
