@@ -1,4 +1,4 @@
-import { createTopPlayed, createSongCard } from './homePageElements.js';
+import { createTopPlayed, createSongCard } from './dom/homePageElements.js';
 import { fetchDatabase } from './api/songs.js';
 
 async function loadMusic() {
