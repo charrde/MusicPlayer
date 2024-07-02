@@ -34,6 +34,7 @@ header {
 }
 
 .search-bar {
+    display: none;
     height: fit-content;
     width: 600px;
     padding: 10px;
@@ -102,12 +103,45 @@ nav {
     margin-top: 100px;
 }
 
-.song-card {
+.section-heading {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    align-items: center;
 }
+
+.section-heading-text {
+    font-size: 2.5rem;
+}
+
+.scroll-buttons button {
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 50%;
+    border: none;
+    padding: 12px;
+}
+
+.scroll-buttons button:enabled {
+    background-color: #2E2845;
+}
+
+.scroll-buttons button:disabled {
+    background-color: #1B172A;
+}
+
+.scroll-buttons button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.scroll-buttons button:active {
+    transform: scale(0.9);
+    transition: transform 0.2s;
+}
+
 
 .loading-wheel {
     border: 16px solid rgba(171, 157, 222, 0.2);
@@ -153,26 +187,38 @@ nav {
     border-radius: 10px;
   }
 
-.song-card-details h3 {
-    margin-top: 0;
-    font-size: 1.5rem;
+.hot-now-songs {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: hidden;
 }
 
-.song-card-details h4 {
-    margin-top: 5px;
+.song-card {
+    display: flex;
+    align-items: center;
+    min-width: calc(100% / 3);
+}
+
+.song-card-album-image {
+    margin-right: 18px;
+}
+
+.song-card-details p {
+    font-weight: 700;
 }
 
 .play-song-button {
-    width: 40px;
-    height: 40px;
-    display: flex;
+    width: 48px;
+    height: 48px;
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     border: 3px solid #e1def2;
     border-radius: 50%;
     background-color: #e1def2;
-    padding: 10px;
+    padding: 12px;
 }
 
 .play-song-button:hover {
@@ -347,5 +393,8 @@ nav {
 @media (min-width: 1100px) {
     .mobile-menu {
         display: none;
+    }
+    .search-bar {
+        display: inline-block;
     }
 }
