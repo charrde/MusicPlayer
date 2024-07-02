@@ -44,8 +44,10 @@ export function createTopPlayed() {
 
         hotSongsScrollingElement.scrollLeft -= scrollDistance;
         hotSongsScrollingElement.addEventListener('scrollend', function () {
-            hotSongsScrollBack.disabled = true;
-            if (hotSongsScrollForward.disabled) {
+            if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.clientWidth) {
+                hotSongsScrollBack.disabled = true;
+            }
+            else {
                 hotSongsScrollForward.disabled = false;
             }
         });
@@ -58,8 +60,10 @@ export function createTopPlayed() {
 
         hotSongsScrollingElement.scrollLeft += scrollDistance;
         hotSongsScrollingElement.addEventListener('scrollend', function () {
-            hotSongsScrollForward.disabled = true;
-            if (hotSongsScrollBack.disabled) {
+            if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.clientWidth) {
+                hotSongsScrollForward.disabled = true;
+            }
+            else {
                 hotSongsScrollBack.disabled = false;
             }
         });
