@@ -1,4 +1,4 @@
-import { createTopPlayed, createSongCard, createSongCardColumn } from './homePageElements.js';
+import { createTopPlayed, createSongCard, createSongCardColumn } from './dom/homePageElements.js';
 import { fetchDatabase } from './api/songs.js';
 
 async function headerAuthDisplay() {
