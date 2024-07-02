@@ -24,7 +24,7 @@ function loadVolumeLevel() {
 	volumeLevelTag.textContent = volume.value + '%';
 }
 
-const volume = document.querySelector('.volume-slider');
+/*const volume = document.querySelector('.volume-slider');
 const audio = document.querySelector('audio');
 
 volume.addEventListener('input', function (event) {
@@ -33,7 +33,7 @@ volume.addEventListener('input', function (event) {
 	if (audio) {
 		audio.volume = volume.value / 100;
 	}
-});
+}); */
 
 document.addEventListener('DOMContentLoaded', async function () {
 	createTopPlayed();
