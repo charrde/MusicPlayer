@@ -195,6 +195,7 @@ nav {
 
 .song-card-controls-wrapper {
     display: none;
+    position: fixed;
 }
 
 .song-card-details-wrapper {
@@ -206,6 +207,7 @@ nav {
     display: flex;
     margin-bottom: 10px;
     margin-right: 10px;
+    flex-direction: row-reverse;
 }
 
 .song-card-album-image {
