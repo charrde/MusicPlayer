@@ -12,10 +12,10 @@ export function createTopPlayed() {
 					<h2 class="section-heading-text">Hot right now.</h2>
 					<div class="scroll-buttons">
 						<button id="hot-now-scroll-back-button">
-							<p>B</p>
+							<p>&lt;</p>
 						</button>
 						<button id="hot-now-scroll-forward-button">
-							<p>F</p>
+							<p>&gt;</p>
 						</button>
 					</div>
 				</div>
