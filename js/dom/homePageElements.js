@@ -1,5 +1,4 @@
 import { createMediaCenter } from './mediaCenterElements.js';
-import { createSongCard, createSongCardColumn } from './dom/homePageElements.js';
 import { fetchRandomSongs } from '../api/songs.js';
 
 export async function loadMusic() {
