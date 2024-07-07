@@ -1,4 +1,4 @@
-import { loadMusic } from "./dom/homePageElements";
+import { loadMusic } from "./dom/homePageElements.js";
 
 async function headerAuthDisplay() {
 	try {
