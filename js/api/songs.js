@@ -1,4 +1,4 @@
-export function fetchDatabase() {
+export function fetchRandomSongs() {
 	const endpoint = "/api/random-songs";
 	return fetch(endpoint)
 		.then(response => {

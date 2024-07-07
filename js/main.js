@@ -1,5 +1,4 @@
-import { createTopPlayed, createSongCard, createSongCardColumn } from './dom/homePageElements.js';
-import { fetchDatabase } from './api/songs.js';
+import { loadMusic } from "./dom/homePageElements";
 
 async function headerAuthDisplay() {
 	try {
@@ -33,39 +32,57 @@ async function headerAuthDisplay() {
 	}
 }
 
-async function loadMusic() {
-	try {
-		const response = await fetchDatabase();
-		const songs = response.songs;
-		const hotNowSongsContainer = document.getElementById('hot-now-songs');
-		hotNowSongsContainer.innerHTML = '';
+const hotSongsScrollForward = document.getElementById('hot-now-scroll-forward-button');
+const hotSongsScrollBack = document.getElementById('hot-now-scroll-back-button');
+const hotSongsScrollingElement = document.getElementById('hot-now-songs');
 
-		let songCardColumn = createSongCardColumn();
-		songs.forEach((song, index) => {
-			const songCard = createSongCard(song);
-			songCardColumn.appendChild(songCard);
-			if ((index + 1) % 2 === 0) {
-				hotNowSongsContainer.appendChild(songCardColumn);
-				songCardColumn = createSongCardColumn();
-			}
-		});
-		if (songCardColumn.children.length > 0) {
-			hotNowSongsContainer.appendChild(songCardColumn);
+hotSongsScrollBack.addEventListener('click', function () {
+	const desiredElement = document.querySelector('.song-card');
+	let scrollDistance = desiredElement.offsetWidth;
+
+	hotSongsScrollingElement.scrollLeft -= scrollDistance;
+	hotSongsScrollingElement.addEventListener('scrollend', function () {
+		hotSongsScrollForward.disabled = false;
+
+		if (hotSongsScrollingElement.scrollLeft <= 0) {
+			hotSongsScrollBack.disabled = true;
 		}
+	});
+});
 
-		loadVolumeLevel();
-	} catch (error) {
-		console.error('Error fetching songs:', error);
+hotSongsScrollForward.addEventListener('click', function () {
+	const desiredElement = document.querySelector('.song-card');
+	let scrollDistance = desiredElement.offsetWidth;
+
+	hotSongsScrollingElement.scrollLeft += scrollDistance;
+	hotSongsScrollBack.disabled = false;
+
+	if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
+		hotSongsScrollForward.disabled = true;
 	}
-}
+});
+
+hotSongsScrollingElement.addEventListener('scroll', function () {
+	if (hotSongsScrollingElement.scrollLeft <= 0) {
+		hotSongsScrollBack.disabled = true;
+	} else {
+		hotSongsScrollBack.disabled = false;
+	}
+
+	if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
+		hotSongsScrollForward.disabled = true;
+	} else {
+		hotSongsScrollForward.disabled = false;
+	}
+});
 
 function loadVolumeLevel() {
 	const volume = document.querySelector('.volume-slider');
 	let volumeLevelTag = document.querySelector('.volume-level');
 	volumeLevelTag.textContent = volume.value + '%';
 }
+
 document.addEventListener('DOMContentLoaded', async function () {
 	headerAuthDisplay();
-	createTopPlayed();
 	await loadMusic();
 });

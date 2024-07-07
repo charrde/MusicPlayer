@@ -1,81 +1,31 @@
 import { createMediaCenter } from './mediaCenterElements.js';
+import { createSongCard, createSongCardColumn } from './dom/homePageElements.js';
+import { fetchRandomSongs } from '../api/songs.js';
 
-const mainElement = document.querySelector('main');
+export async function loadMusic() {
+	try {
+		const response = await fetchRandomSongs();
+		const songs = response.songs;
+		const hotNowSongsContainer = document.getElementById('hot-now-songs');
+		hotNowSongsContainer.innerHTML = '';
 
-export function createTopPlayed() {
-	const topPlayed = document.createElement('div');
-	topPlayed.className = 'hot-now-section';
-	topPlayed.innerHTML = `
-		<section class="center-container">
-			<div class="padding-container">
-				<div class="section-heading">
-					<h2 class="section-heading-text">Hot right now.</h2>
-					<div class="scroll-buttons">
-						<button id="hot-now-scroll-back-button">
-							<p>&lt;</p>
-						</button>
-						<button id="hot-now-scroll-forward-button">
-							<p>&gt;</p>
-						</button>
-					</div>
-				</div>
-				<div class="volume">
-					<h3>Volume</h3>
-					<input type="range" class="volume-slider" value="50" min="0" max="100">
-					<p class="volume-level"></p>
-				</div>
-				<div id="hot-now-songs" class="hot-now-songs">
-					<!-- Song cards will be dynamically inserted here -->
-				</div>
-			</div>
-		</section>
-	`;
-
-	mainElement.appendChild(topPlayed);
-
-	const hotSongsScrollForward = document.getElementById('hot-now-scroll-forward-button');
-	const hotSongsScrollBack = document.getElementById('hot-now-scroll-back-button');
-	const hotSongsScrollingElement = document.getElementById('hot-now-songs');
-
-    hotSongsScrollBack.addEventListener('click', function () {
-        const desiredElement = document.querySelector('.song-card');
-        let scrollDistance = desiredElement.offsetWidth;
-
-        hotSongsScrollingElement.scrollLeft -= scrollDistance;
-        hotSongsScrollingElement.addEventListener('scrollend', function () {
-			hotSongsScrollForward.disabled = false;
-
-			if (hotSongsScrollingElement.scrollLeft <= 0) {
-				hotSongsScrollBack.disabled = true;
+		let songCardColumn = createSongCardColumn();
+		songs.forEach((song, index) => {
+			const songCard = createSongCard(song);
+			songCardColumn.appendChild(songCard);
+			if ((index + 1) % 2 === 0) {
+				hotNowSongsContainer.appendChild(songCardColumn);
+				songCardColumn = createSongCardColumn();
 			}
-        });
-    });
+		});
+		if (songCardColumn.children.length > 0) {
+			hotNowSongsContainer.appendChild(songCardColumn);
+		}
 
-    hotSongsScrollForward.addEventListener('click', function () {
-        const desiredElement = document.querySelector('.song-card');
-        let scrollDistance = desiredElement.offsetWidth;
-
-        hotSongsScrollingElement.scrollLeft += scrollDistance;
-        hotSongsScrollBack.disabled = false;
-
-        if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
-            hotSongsScrollForward.disabled = true;
-        }
-    });
-
-    hotSongsScrollingElement.addEventListener('scroll', function () {
-        if (hotSongsScrollingElement.scrollLeft <= 0) {
-            hotSongsScrollBack.disabled = true;
-        } else {
-            hotSongsScrollBack.disabled = false;
-        }
-
-        if (hotSongsScrollingElement.scrollLeft + hotSongsScrollingElement.clientWidth >= hotSongsScrollingElement.scrollWidth) {
-            hotSongsScrollForward.disabled = true;
-        } else {
-            hotSongsScrollForward.disabled = false;
-        }
-    });
+		loadVolumeLevel();
+	} catch (error) {
+		console.error('Error fetching songs:', error);
+	}
 }
 
 export function createSongCardColumn() {

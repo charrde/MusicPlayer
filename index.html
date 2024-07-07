@@ -14,10 +14,6 @@
     <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
-    <div id="loading-screen" class="loading">
-        <div class="loading-wheel"></div>
-    </div>
-
     <div id="web-content">
         <header>
             <div class="center-container">
@@ -30,6 +26,30 @@
             </div>
         </header>
         <main>
+            <div class="hot-now-section">
+                <section class="center-container">
+                    <div class="padding-container">
+                        <div class="section-heading">
+                            <h2 class="section-heading-text">Hot right now.</h2>
+                            <div class="scroll-buttons">
+                                <button id="hot-now-scroll-back-button">
+                                    <p>&lt;</p>
+                                </button>
+                                <button id="hot-now-scroll-forward-button">
+                                    <p>&gt;</p>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="volume">
+                            <h3>Volume</h3>
+                            <input type="range" class="volume-slider" value="50" min="0" max="100">
+                            <p class="volume-level"></p>
+                        </div>
+                        <div id="hot-now-songs" class="hot-now-songs">
+                        </div>
+                    </div>
+                </section>
+            </div>
         </main>
         <div class="bottom-mobile">
             <div class="media-center padding-container hidden">
